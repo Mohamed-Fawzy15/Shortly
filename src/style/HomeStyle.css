@@ -1,0 +1,59 @@
+.addLink {
+  position: relative;
+  bottom: 50px;
+}
+
+.form-inner {
+  padding: 30px 20px;
+  background: url("../assets/images/bg-shorten-desktop.svg") no-repeat center
+    top var(--bg-color);
+  background-size: cover;
+}
+
+main {
+  background-color: var(--secondary-color);
+  position: relative;
+  height: 70vh;
+}
+
+.inner {
+  background-color: white;
+  padding: 20px 30px 0;
+  border-radius: 10px;
+  position: relative;
+}
+
+.card-icon {
+  position: absolute;
+  top: -40px;
+  left: 20%;
+  transform: translateX(-50%);
+  background-color: var(--bg-color);
+  padding: 20px;
+  border-radius: 50%;
+}
+
+.card-icon .img {
+  width: 100%;
+}
+
+.card-body {
+  padding: 50px 0 20px;
+}
+
+.detailed-card {
+  position: relative;
+  top: 50px;
+}
+
+.fully-card {
+  position: relative;
+  top: 100px;
+}
+
+.bost {
+  background: url("../assets/images/bg-boost-desktop.svg") no-repeat
+    var(--bg-color);
+  background-size: cover;
+  background-position: center;
+}

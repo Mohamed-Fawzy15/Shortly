@@ -1,0 +1,18 @@
+:root {
+  --secondary-color: #eff1f7;
+  --main-color: #2cd0d0;
+  --bg-color: #25233a;
+}
+
+.btn-shorten {
+  background-color: var(--main-color);
+  color: white;
+  border-radius: 20px;
+  border: none;
+  padding: 10px 20px;
+  transition: 0.5s background-color;
+}
+
+.btn-shorten:hover {
+  background-color: #28adab;
+}
