@@ -13,7 +13,7 @@
 main {
   background-color: var(--secondary-color);
   position: relative;
-  height: 70vh;
+  height: 120vh;
 }
 
 .inner {

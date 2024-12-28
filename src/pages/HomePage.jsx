@@ -5,8 +5,40 @@ import fully from "../assets/images/icon-fully-customizable.svg";
 
 import "../style/HomeStyle.css";
 import NavBar from "../component/NavBar";
+import { useState } from "react";
 
 const HomePage = () => {
+  const [longUrl, setLongUrl] = useState("");
+  const [shortUrl, setShortUrl] = useState("");
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!longUrl.trim()) {
+      setError("Please enter a valid URL.");
+      return;
+    }
+    setError("");
+
+    try {
+      const response = await fetch("https://cleanuri.com/api/v1/shorten", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ url: longUrl }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to shorten the URL.");
+      }
+
+      const data = await response.json();
+      setShortUrl(data.result_url);
+    } catch (err) {
+      setError(err.message || "An unexpected error occurred.");
+    }
+  };
   return (
     <>
       <NavBar />
@@ -39,12 +71,17 @@ const HomePage = () => {
         <section className="addLink">
           <div className="container">
             <div className="form-inner rounded">
-              <form className="row justify-content-center align-items-center">
+              <form
+                onSubmit={handleSubmit}
+                className="row justify-content-center align-items-center"
+              >
                 <div className="col-12 col-md-10 ">
                   <input
                     type="text"
                     placeholder="Shorten a link here..."
                     className="form-control "
+                    value={longUrl}
+                    onChange={(e) => setLongUrl(e.target.value)}
                   />
                 </div>
 
@@ -57,6 +94,16 @@ const HomePage = () => {
             </div>
           </div>
         </section>
+
+        {shortUrl && (
+          <div className="mt-3">
+            <p>Shortened URL:</p>
+            <a href={shortUrl} target="_blank" rel="noopener noreferrer">
+              {shortUrl}
+            </a>
+          </div>
+        )}
+        {error && <p className="text-danger mt-2">{error}</p>}
 
         <section className="statistics">
           <header className="text-center py-5">
@@ -122,6 +169,8 @@ const HomePage = () => {
         <h3 className="text-white">Bost Your link today</h3>
         <button className="btn-shorten">Get Started</button>
       </section>
+
+      <footer></footer>
     </>
   );
 };
